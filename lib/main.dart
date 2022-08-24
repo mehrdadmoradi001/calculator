@@ -1,4 +1,5 @@
 import 'package:calculator_task/constants/const_color.dart';
+import 'package:calculator_task/widgets/keyBoard_buttons.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,6 +27,16 @@ class Application extends StatelessWidget {
                 flex: 7,
                 child: Container(
                   color: backgroundGrey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      KeyBoardButtons('ac','ce','%','/'),
+                      KeyBoardButtons('7','8','9','*'),
+                      KeyBoardButtons('4','5','6','-'),
+                      KeyBoardButtons('1','2','3','+'),
+                      KeyBoardButtons('00','0','.','='),
+                    ],
+                  ),
                 ),
               ),
             ],
