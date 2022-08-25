@@ -3,11 +3,20 @@ import 'package:calculator_task/widgets/keyBoard_buttons.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(Application());
+  runApp(CalculatorApplication());
 }
 
-class Application extends StatelessWidget {
-  const Application({Key? key}) : super(key: key);
+class CalculatorApplication extends StatefulWidget {
+  const CalculatorApplication({Key? key}) : super(key: key);
+
+  @override
+  State<CalculatorApplication> createState() => _CalculatorApplicationState();
+}
+
+class _CalculatorApplicationState extends State<CalculatorApplication> {
+
+  var inputUser = '';
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +39,11 @@ class Application extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      KeyBoardButtons('ac','ce','%','/'),
-                      KeyBoardButtons('7','8','9','*'),
-                      KeyBoardButtons('4','5','6','-'),
-                      KeyBoardButtons('1','2','3','+'),
-                      KeyBoardButtons('00','0','.','='),
+                      KeyBoardButtons('ac', 'ce', '%', '/'),
+                      KeyBoardButtons('7', '8', '9', '*'),
+                      KeyBoardButtons('4', '5', '6', '-'),
+                      KeyBoardButtons('1', '2', '3', '+'),
+                      KeyBoardButtons('00', '0', '.', '='),
                     ],
                   ),
                 ),
