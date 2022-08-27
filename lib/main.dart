@@ -14,10 +14,9 @@ class CalculatorApplication extends StatefulWidget {
 }
 
 class _CalculatorApplicationState extends State<CalculatorApplication> {
-
-
   var inputUser = '';
-
+  var result = '';
+  var list = ['ac', 'ce', '%', '/', '*', '-', '+', '='];
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +53,8 @@ class _CalculatorApplicationState extends State<CalculatorApplication> {
     );
   }
 
-
-  Widget KeyBoardButtons(String text1, String text2, String text3, String text4) {
+  Widget KeyBoardButtons(
+      String text1, String text2, String text3, String text4) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
@@ -68,7 +67,7 @@ class _CalculatorApplicationState extends State<CalculatorApplication> {
   }
 
   bool isOperator(String text) {
-    var list = ['ac', 'ce', '%', '/', '*', '-', '+', '=']; //
+    //
     for (var item in list) {
       if (text == item) {
         return true;
@@ -103,9 +102,21 @@ class _CalculatorApplicationState extends State<CalculatorApplication> {
         backgroundColor: getBackgroundColor(text),
       ),
       onPressed: () {
+        if (text == 'ce' && inputUser.length > 0) {
+          setState(() {
+            inputUser = inputUser.substring(0, inputUser.length - 1); //
+          });
+        } else if (text == 'ce') {
+          setState(() {
+            inputUser.isEmpty;
+          });
+        } else if(text == '='){
+
+        }else {
           setState(() {
             inputUser = inputUser + text;
           });
+        }
       },
       child: Padding(
         padding: EdgeInsets.all(3),
@@ -116,6 +127,4 @@ class _CalculatorApplicationState extends State<CalculatorApplication> {
       ),
     );
   }
-
-
 }
