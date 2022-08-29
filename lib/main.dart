@@ -1,6 +1,7 @@
 import 'package:calculator_task/constants/const_color.dart';
 import 'package:calculator_task/widgets/display_to_the_user.dart';
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 void main() {
   runApp(CalculatorApplication());
@@ -28,7 +29,7 @@ class _CalculatorApplicationState extends State<CalculatorApplication> {
             children: [
               Expanded(
                 flex: 3,
-                child: getDisplayToTheUser(inputUser),
+                child: getDisplayToTheUser(inputUser, result),
               ),
               Expanded(
                 flex: 7,
@@ -105,14 +106,27 @@ class _CalculatorApplicationState extends State<CalculatorApplication> {
         if (text == 'ce' && inputUser.length > 0) {
           setState(() {
             inputUser = inputUser.substring(0, inputUser.length - 1); //
+            result = '';
           });
         } else if (text == 'ce') {
           setState(() {
-            inputUser.isEmpty;
+            inputUser = '';
           });
-        } else if(text == '='){
-
-        }else {
+        } else if (text == '=') {
+          Parser parser = Parser();
+          Expression expression = parser.parse(inputUser);
+          ContextModel contextModel = ContextModel();
+          double eval =
+              expression.evaluate(EvaluationType.REAL, contextModel); //
+          setState(() {
+            result = eval.toString();
+          });
+        } else if (text == 'ac') {
+          setState(() {
+            inputUser = '';
+            result = '';
+          });
+        } else {
           setState(() {
             inputUser = inputUser + text;
           });
